@@ -24,3 +24,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.scrollbar-stone {
+  scrollbar-color: rgba(120, 113, 108, 0.55) rgba(245, 245, 244, 1);
+  scrollbar-width: thin;
+}
+
+.scrollbar-stone::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar-stone::-webkit-scrollbar-track {
+  background: rgba(245, 245, 244, 1);
+  border-left: 1px solid rgba(231, 229, 228, 1);
+}
+
+.scrollbar-stone::-webkit-scrollbar-thumb {
+  background: rgba(120, 113, 108, 0.55);
+  border-radius: 999px;
+  border: 3px solid rgba(245, 245, 244, 1);
+}
+
+.scrollbar-stone::-webkit-scrollbar-thumb:hover {
+  background: rgba(87, 83, 78, 0.7);
+}

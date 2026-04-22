@@ -42,7 +42,7 @@ export function HorseModal({ horse, onClose, onContact }: Props) {
   return (
     <dialog
       ref={dialogRef}
-      className="m-auto w-[min(1040px,calc(100%-24px))] rounded-3xl border border-stone-200 bg-white p-0 text-stone-950 shadow-2xl backdrop:bg-black/50 focus:outline-none"
+      className="m-auto max-h-[calc(100dvh-24px)] w-[min(1040px,calc(100%-24px))] overflow-hidden rounded-3xl border border-stone-200 bg-white p-0 text-stone-950 shadow-2xl backdrop:bg-black/50 focus:outline-none"
       onClose={onClose}
       onClick={(e) => {
         if (e.target === e.currentTarget) dialogRef.current?.close();
@@ -50,10 +50,12 @@ export function HorseModal({ horse, onClose, onContact }: Props) {
     >
       {horse ? (
         <div className="flex max-h-[calc(100dvh-24px)] flex-col overflow-hidden">
-          <div className="flex items-start justify-between gap-4 border-b border-stone-200 px-5 py-4 sm:px-6">
+          <div className="flex items-center justify-between gap-4 border-b border-stone-200 px-5 py-5 sm:px-6">
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-lg font-semibold tracking-tight sm:text-xl">{horse.name}</h3>
+                <h3 className="text-lg font-semibold leading-6 tracking-tight sm:text-xl sm:leading-7">
+                  {horse.name}
+                </h3>
                 {horse.lot ? (
                   <span className="rounded-full bg-stone-900 px-3 py-1 text-xs font-semibold text-amber-100">
                     Lote {horse.lot}
@@ -76,7 +78,7 @@ export function HorseModal({ horse, onClose, onContact }: Props) {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-6">
+          <div className="scrollbar-stone flex-1 overflow-y-auto px-5 py-5 sm:px-6">
             <div className="grid gap-5">
               <div className="grid items-stretch gap-5 lg:grid-cols-2">
                 <div className="min-h-[320px] overflow-hidden rounded-3xl border border-stone-200 bg-stone-50 lg:min-h-[420px]">
