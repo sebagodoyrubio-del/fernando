@@ -1,50 +1,190 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Paleta Rodeo Chileno ── */
+  --color-tierra:       #6B3A2A;   /* café cuero oscuro */
+  --color-vino:         #7C2D3B;   /* vino tinto */
+  --color-vino-light:   #9B3A4A;
+  --color-caoba:        #4A2418;   /* madera oscura */
+  --color-campo:        #3D5A2A;   /* verde campo */
+  --color-campo-light:  #5A7A3D;
+  --color-paja:         #F5E8C8;   /* paja/trigo claro */
+  --color-paja-mid:     #E8D49A;
+  --color-arena:        #C9A96E;   /* arena/cuero */
+  --color-arena-dark:   #9B7A45;
+  --color-crema:        #FAF5EC;   /* fondo crema */
+  --color-humo:         #F0E8D8;
+
+  --background: var(--color-crema);
+  --foreground: var(--color-caoba);
+
+  /* Textura sutil de ruido aplicada como fondo */
+  --texture-overlay: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Lato', sans-serif;
+  --font-display: 'Playfair Display', serif;
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
 }
 
+/* ── Utilidades de paleta ── */
+.bg-rodeo         { background-color: var(--color-tierra); }
+.bg-vino          { background-color: var(--color-vino); }
+.bg-campo         { background-color: var(--color-campo); }
+.bg-paja          { background-color: var(--color-paja); }
+.bg-crema         { background-color: var(--color-crema); }
+.bg-arena         { background-color: var(--color-arena); }
+.text-vino        { color: var(--color-vino); }
+.text-tierra      { color: var(--color-tierra); }
+.text-campo       { color: var(--color-campo); }
+.text-arena       { color: var(--color-arena-dark); }
+.border-paja      { border-color: var(--color-paja-mid); }
+.border-arena     { border-color: var(--color-arena); }
+
+/* ── Tipografía display ── */
+.font-display { font-family: 'Playfair Display', serif; }
+
+/* ── Botón principal: cuero/tierra ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  padding: 0 1.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-tierra);
+  color: var(--color-paja);
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background-color 0.2s, transform 0.1s;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover  { background-color: var(--color-caoba); }
+.btn-primary:active { transform: scale(0.98); }
+
+/* ── Botón secundario: borde vino ── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  padding: 0 1.5rem;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  color: var(--color-vino);
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--color-vino);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover {
+  background-color: var(--color-vino);
+  color: var(--color-paja);
+}
+
+/* ── Card caballo ── */
+.card-horse {
+  background: #fff;
+  border: 1px solid var(--color-paja-mid);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card-horse:hover {
+  box-shadow: 0 8px 24px rgba(74, 36, 24, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ── Divisor ornamental ── */
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-arena);
+}
+.divider-ornament::before,
+.divider-ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-arena));
+}
+.divider-ornament::after {
+  background: linear-gradient(to left, transparent, var(--color-arena));
+}
+
+/* ── Badge disponible ── */
+.badge-available {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: #eef4e8;
+  color: var(--color-campo);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.badge-available::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-campo);
+}
+
+/* ── Sección con fondo campo/tierra ── */
+.section-dark {
+  background-color: var(--color-caoba);
+  color: var(--color-paja);
+}
+
+/* ── Scrollbar arena ── */
 .scrollbar-stone {
-  scrollbar-color: rgba(120, 113, 108, 0.55) rgba(245, 245, 244, 1);
+  scrollbar-color: rgba(155, 122, 69, 0.5) var(--color-paja);
   scrollbar-width: thin;
 }
-
-.scrollbar-stone::-webkit-scrollbar {
-  width: 10px;
-}
-
+.scrollbar-stone::-webkit-scrollbar { width: 10px; }
 .scrollbar-stone::-webkit-scrollbar-track {
-  background: rgba(245, 245, 244, 1);
-  border-left: 1px solid rgba(231, 229, 228, 1);
+  background: var(--color-paja);
+  border-left: 1px solid var(--color-paja-mid);
 }
-
 .scrollbar-stone::-webkit-scrollbar-thumb {
-  background: rgba(120, 113, 108, 0.55);
+  background: rgba(155, 122, 69, 0.55);
   border-radius: 999px;
-  border: 3px solid rgba(245, 245, 244, 1);
+  border: 3px solid var(--color-paja);
+}
+.scrollbar-stone::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 58, 42, 0.7);
 }
 
-.scrollbar-stone::-webkit-scrollbar-thumb:hover {
-  background: rgba(87, 83, 78, 0.7);
+/* ── Animaciones suaves ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out both;
 }

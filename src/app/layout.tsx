@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Lato } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Catálogo Criollo",
-  description: "Catálogo informativo y contacto para venta de caballos.",
+  description: "Catálogo informativo y contacto para venta de caballos criollos.",
 };
 
 export default function RootLayout({
@@ -25,9 +29,14 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${playfair.variable} ${lato.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-stone-50">{children}</body>
+      <body
+        className="min-h-full flex flex-col"
+        style={{ background: "var(--color-crema, #FAF5EC)" }}
+      >
+        {children}
+      </body>
     </html>
   );
 }
